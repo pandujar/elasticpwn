@@ -47,7 +47,7 @@ def pfind(plugin):
 		print "[-] Error connecting to "+host+" "+str(e)
 		sys.exit()
 
-# Include more plugin names to check if they are installeed
+# Include more plugin names to check if they are installed
 pluginList = ['test','kopf', 'HQ', 'marvel', 'bigdesk', 'head'] 
 
 for plugin in pluginList:
